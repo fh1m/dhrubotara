@@ -1,0 +1,246 @@
+{
+  "originals_modified": false,
+  "media": [
+    {
+      "source": "r_&_d/heading_down_test_vid.mp4",
+      "snapshot": "data/heading-down.mp4",
+      "sha256": "87800bacb6f4d4d6fd8f83e5c6d34848bbdaffe7a88b973b82b46f5e7efaf60d",
+      "kind": "supplied recording; no pose ground truth"
+    },
+    {
+      "source": "r_&_d/XFeat + YOLO + Flow + IMU_screenshot_23.11.2025.png",
+      "snapshot": "media/archived-guidance.png",
+      "sha256": "e22c6f74e62fe4d3e7af2f51606ef66f405695c53fad6a718fe4cf7fe643b4af",
+      "kind": "historical application capture; not the new replay"
+    }
+  ],
+  "source_files": [
+    {
+      "source": "r_&_d/features_v6.py",
+      "snapshot": "origin/features_v6.py",
+      "sha256": "375956dffebe072ded8566f475f83db32ee304c21a871c583f462edc32d5f7c5"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/main.py",
+      "snapshot": "origin/visual_nav_sys/main.py",
+      "sha256": "1403cb074a6734f71820e76adab96586f6302dbda905fe01a60adaec372cc138"
+    },
+    {
+      "source": "r_&_d/features_v9.py",
+      "snapshot": "origin/features_v9.py",
+      "sha256": "6a9a0d072df453c037ea9e85996192d44534c336b7cae291999d28cf8b7587a7"
+    },
+    {
+      "source": "r_&_d/features_v4.py",
+      "snapshot": "origin/features_v4.py",
+      "sha256": "bf947c06c1d7cb17d713b153a49b52326aad80a71c6176d81092035507549721"
+    },
+    {
+      "source": "r_&_d/features_v3.py",
+      "snapshot": "origin/features_v3.py",
+      "sha256": "d58027922b1c8459bda2d88b7d22259dfa3d22083cfe29a74904ee48998ed8e8"
+    },
+    {
+      "source": "r_&_d/features_v2.py",
+      "snapshot": "origin/features_v2.py",
+      "sha256": "c1218f5dfbaa64171c29e4e8600d43074853c7aee26ee20708ded553d55b7723"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/web_dashboard/backend/app.py",
+      "snapshot": "origin/visual_nav_sys/web_dashboard/backend/app.py",
+      "sha256": "b599d5b8edc9ff3288f43f940a0c631c70cce537b8084be7284be8205b5a2613",
+      "original_sha256": "bc5692cd01a368fe3873a670a18682adf7cd04370cc18be410cf8ad1a76a4baf",
+      "publication_change": "Replace the historical hard-coded Flask signing key with required VISUAL_NAV_SECRET_KEY environment configuration. The original supplied file remains untouched and the pre-publication copy is retained privately."
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/web_dashboard/backend/kalman_filter.py",
+      "snapshot": "origin/visual_nav_sys/web_dashboard/backend/kalman_filter.py",
+      "sha256": "6aaf29caca8a1be3e33450847cc63272ba712e7ca9d85dad4e9545d96364ad07"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/subsystems/pixhawk/imu_handler.py",
+      "snapshot": "origin/visual_nav_sys/subsystems/pixhawk/imu_handler.py",
+      "sha256": "3979788ec8d66093aba0aeb75afdbfe0ee99cd888903b8d63a74c1fec9078443"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/subsystems/dashboard/horizon_viz.py",
+      "snapshot": "origin/visual_nav_sys/subsystems/dashboard/horizon_viz.py",
+      "sha256": "01ef935deb328ec04198adad8c83c5210ecee6344128f8ac406e90ed17efc7e1"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/subsystems/dashboard/imu_viz.py",
+      "snapshot": "origin/visual_nav_sys/subsystems/dashboard/imu_viz.py",
+      "sha256": "6762d654f8b27de19d2a3b3fc8e3b43308370a17855db28097f32d63eae00263"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/subsystems/dashboard/widgets.py",
+      "snapshot": "origin/visual_nav_sys/subsystems/dashboard/widgets.py",
+      "sha256": "dd9e44096a1cb05b98d58243360df3e723491ac3f27188d318b54505e67f7e52"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/subsystems/dashboard/modern_dashboard.py",
+      "snapshot": "origin/visual_nav_sys/subsystems/dashboard/modern_dashboard.py",
+      "sha256": "9c1449dbb4d954a16261da29ed9e94b36a238559bd959d185188fdfa7f68b5c3"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/subsystems/dashboard/__init__.py",
+      "snapshot": "origin/visual_nav_sys/subsystems/dashboard/__init__.py",
+      "sha256": "efafe734e7f44d97741742fecf3d24f3b2f2bb007216d5fa70fed7bd3b5f9057"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/subsystems/dashboard/guidance_viz.py",
+      "snapshot": "origin/visual_nav_sys/subsystems/dashboard/guidance_viz.py",
+      "sha256": "e12ff3959a8fd356918b4cd19483addbfc80cd2b392bbf74288c9a6dc41389b3"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/subsystems/dashboard/performance_viz.py",
+      "snapshot": "origin/visual_nav_sys/subsystems/dashboard/performance_viz.py",
+      "sha256": "c3b249557c3cff6e5fe68ee8c1ad6b71ec87ac454878e466b032843f00ec7acd"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/subsystems/pixhawk/__init__.py",
+      "snapshot": "origin/visual_nav_sys/subsystems/pixhawk/__init__.py",
+      "sha256": "77b84fa284042e7cd80410ca98d8f19b3f09e64d539abe059dfeb574da64aa37"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/subsystems/detection/__init__.py",
+      "snapshot": "origin/visual_nav_sys/subsystems/detection/__init__.py",
+      "sha256": "e84e0fe070be7070c12d0a1ce3a1ba69a901c42515d86adbde0418900b1fb18c"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/subsystems/optical_flow/__init__.py",
+      "snapshot": "origin/visual_nav_sys/subsystems/optical_flow/__init__.py",
+      "sha256": "814d03339a8c381a251dcae6658afd4b486632bc6363212ed4e8a70181c267a9"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/subsystems/xfeat/__init__.py",
+      "snapshot": "origin/visual_nav_sys/subsystems/xfeat/__init__.py",
+      "sha256": "2ee080c380bd63cd67ef0b39ba62c77defc158e444105ebf6758aee9f8f44c03"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/utils/helpers.py",
+      "snapshot": "origin/visual_nav_sys/utils/helpers.py",
+      "sha256": "80addf24e762dda6fed79a722608cb64fb6732c80f23aa83cc6c4c86ceb6b8e5"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/subsystems/optical_flow/flow_tracker.py",
+      "snapshot": "origin/visual_nav_sys/subsystems/optical_flow/flow_tracker.py",
+      "sha256": "452638d87205b10744a873cb2ed2fe9c8b9c88e1969562e0e80836e8bbf7dd65"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/subsystems/detection/object_tracker.py",
+      "snapshot": "origin/visual_nav_sys/subsystems/detection/object_tracker.py",
+      "sha256": "fbe31c8e571d5ade0f56e866fa6c35f3de14eb9b2cc93befb7f2085248e4c7cb"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/subsystems/xfeat/feature_matcher.py",
+      "snapshot": "origin/visual_nav_sys/subsystems/xfeat/feature_matcher.py",
+      "sha256": "f77695510bc18821800a41b07eafacb3054aaf3417dd5da247ae28596c007ed2"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/__init__.py",
+      "snapshot": "origin/visual_nav_sys/__init__.py",
+      "sha256": "32eb342402101acd3a3b10bf05c681d9c5fc37e8f962c46df697a713e3eef4ad"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/core/__init__.py",
+      "snapshot": "origin/visual_nav_sys/core/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/subsystems/__init__.py",
+      "snapshot": "origin/visual_nav_sys/subsystems/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/utils/__init__.py",
+      "snapshot": "origin/visual_nav_sys/utils/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "r_&_d/features_v8.py",
+      "snapshot": "origin/features_v8.py",
+      "sha256": "facf5d00fcb5622eda8bb50e8f0c7f0d2cc9d1a14e3758db0c598b6380e91998"
+    },
+    {
+      "source": "r_&_d/features_v7.py",
+      "snapshot": "origin/features_v7.py",
+      "sha256": "3d32d346e814c615cf140301d5b2fd7b7e8192b5ec079e6679cc27ad68013d42"
+    },
+    {
+      "source": "r_&_d/features_v5.py",
+      "snapshot": "origin/features_v5.py",
+      "sha256": "b3036ed6b86c2e61414ddf85a272c6b7b30e2c6d50bb5000b9ec758831470f2c"
+    },
+    {
+      "source": "r_&_d/features_v5_backup.py",
+      "snapshot": "origin/features_v5_backup.py",
+      "sha256": "a9a3cc40cc227ed5fb46cbbffe63c94a8ec40f4f7c290dc439db2055ed35b72e"
+    },
+    {
+      "source": "r_&_d/features.py",
+      "snapshot": "origin/features.py",
+      "sha256": "8f9a9df0a3fd61f354dd09db6435d58f1d8a0695bf6cffcf636e9ca69ff7add1"
+    },
+    {
+      "source": "r_&_d/point.py",
+      "snapshot": "origin/point.py",
+      "sha256": "146fe02898fe3528741407e7b92a9f0b1c2db4cae67c2d6833eed160b582a3f4"
+    },
+    {
+      "source": "r_&_d/pix_control_v2.py",
+      "snapshot": "origin/pix_control_v2.py",
+      "sha256": "40153493275ab1111387f293b5c1506d811d0fba81ba88644c66210a2951ffe0"
+    },
+    {
+      "source": "r_&_d/pix_control.py",
+      "snapshot": "origin/pix_control.py",
+      "sha256": "43a3c211a9db9873330e9b2367dc197ecbc6b10ff638690d76598d399cce3798"
+    },
+    {
+      "source": "r_&_d/test.py",
+      "snapshot": "origin/test.py",
+      "sha256": "4ce3568dceaab9ef4bc3b33ceff992f123e4ffacf7e0a5c99cd0586abf5e8beb"
+    },
+    {
+      "source": "r_&_d/heading_v1.py",
+      "snapshot": "origin/heading_v1.py",
+      "sha256": "5684e8e24b102df8f956b4498456e60884be6c956276c51063521cacb4eaf5af"
+    },
+    {
+      "source": "r_&_d/v2.py",
+      "snapshot": "origin/v2.py",
+      "sha256": "f2fb28141982561aa55d906eeafffe9109f5bc0b03c9132564f101a5889948b6"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/web_dashboard/static/js/dashboard.js",
+      "snapshot": "origin/visual_nav_sys/web_dashboard/static/js/dashboard.js",
+      "sha256": "f0a4cf8eb3f98fecb10519897b0aedccd6f5a4db04c84a7ed296e8c12a1e66a6"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/web_dashboard/static/css/dashboard.css",
+      "snapshot": "origin/visual_nav_sys/web_dashboard/static/css/dashboard.css",
+      "sha256": "258347baed8e33b7afdb4d42d3fa66c4183606893f8de2f7dbbc49f3ed918f4f"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/web_dashboard/static/js/visualizations.js",
+      "snapshot": "origin/visual_nav_sys/web_dashboard/static/js/visualizations.js",
+      "sha256": "5542dd014d061bd1eacc92dd2141ecd2c6a9b66976622a6815adabfc86c5a413"
+    },
+    {
+      "source": "r_&_d/visual_nav_sys/web_dashboard/templates/dashboard.html",
+      "snapshot": "origin/visual_nav_sys/web_dashboard/templates/dashboard.html",
+      "sha256": "31d740a02411b701733e4bc3f5a82c145e2f5f9fd87667914d2b2902df550076"
+    }
+  ],
+  "upstream": [
+    {
+      "name": "XFeat",
+      "url": "https://github.com/verlab/accelerated_features",
+      "commit": "e92685f57f8318b18725c5c8c0bd28c7fe188d9a",
+      "license": "Apache-2.0",
+      "included": false
+    }
+  ],
+  "scope": "User-supplied application and integration sources; not a claim of authorship over upstream libraries. Historical code is not the replay entry point."
+}

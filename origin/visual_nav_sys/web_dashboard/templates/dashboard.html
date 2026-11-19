@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRACU DUBURI - AUV Navigation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <!-- Top Navigation Bar - DUBURI Style -->
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <div class="logo">🤿</div>
+            <h1>BRACU DUBURI • AUV NAV SYSTEM</h1>
+        </div>
+        <div class="nav-status">
+            <div class="status-indicator" id="connectionStatus">
+                <span class="status-dot"></span>
+                <span>Connecting...</span>
+            </div>
+        </div>
+        <div class="nav-controls">
+            <button class="btn btn-primary" onclick="captureReference()">
+                <span>📷</span> Capture
+            </button>
+            <button class="btn btn-secondary" onclick="resetReference()">
+                <span>↻</span> Reset
+            </button>
+        </div>
+    </nav>
+
+    <!-- Tab Navigation - DUBURI AUV -->
+    <div class="tab-container">
+        <div class="tab-nav">
+            <button class="tab-button active" data-tab="overview">
+                <span class="tab-icon">⚓</span>
+                <span class="tab-label">COMMAND</span>
+            </button>
+            <button class="tab-button" data-tab="vision">
+                <span class="tab-icon">👁</span>
+                <span class="tab-label">VISION</span>
+            </button>
+            <button class="tab-button" data-tab="sensors">
+                <span class="tab-icon">📡</span>
+                <span class="tab-label">IMU</span>
+            </button>
+            <button class="tab-button" data-tab="performance">
+                <span class="tab-icon">📊</span>
+                <span class="tab-label">TELEMETRY</span>
+            </button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div class="tab-content active" id="overview">
+            <div class="dashboard-grid">
+                <!-- Left Column: Gauges & Status -->
+                <div class="left-column">
+                    <div class="widget-card">
+                        <h3>Velocity</h3>
+                        <div class="gauges-container">
+                            <div class="gauge-wrapper">
+                                <canvas id="gaugeSpeedX" width="160" height="160"></canvas>
+                                <div class="gauge-label">Speed X</div>
+                            </div>
+                            <div class="gauge-wrapper">
+                                <canvas id="gaugeSpeedY" width="160" height="160"></canvas>
+                                <div class="gauge-label">Speed Y</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget-card">
+                        <h3>System Status</h3>
+                        <div class="status-grid">
+                            <div class="status-item">
+                                <span class="status-label">FPS</span>
+                                <span class="status-value" id="fpsValue">0</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Matches</span>
+                                <span class="status-value" id="matchesValue">0/0</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Confidence</span>
+                                <span class="status-value" id="confidenceValue">0%</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Source</span>
+                                <span class="status-value" id="sourceValue">NONE</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget-card">
+                        <h3>Guidance Vector</h3>
+                        <div class="guidance-display">
+                            <div class="guidance-item">
+                                <span class="axis-label axis-x">DX</span>
+                                <span class="axis-value" id="guidanceDx">0.0</span>
+                            </div>
+                            <div class="guidance-item">
+                                <span class="axis-label axis-y">DY</span>
+                                <span class="axis-value" id="guidanceDy">0.0</span>
+                            </div>
+                            <div class="guidance-item">
+                                <span class="axis-label axis-z">DZ</span>
+                                <span class="axis-value" id="guidanceDz">1.0</span>
+                            </div>
+                        </div>
+                        <div class="alignment-status" id="alignmentStatus">
+                            <div class="status-badge">WAITING</div>
+                        </div>
+                    </div>
+
+                    <!-- NEW: System Health Monitoring -->
+                    <div class="widget-card">
+                        <h3>💻 System Health</h3>
+                        <div class="health-compact">
+                            <div class="health-row">
+                                <span class="health-label">🖥️ CPU:</span>
+                                <span class="health-value" id="healthCPU">0%</span>
+                                <div class="health-bar-mini"><div class="health-bar-fill" id="healthCPUBar"></div></div>
+                            </div>
+                            <div class="health-row">
+                                <span class="health-label">💾 RAM:</span>
+                                <span class="health-value" id="healthMem">0%</span>
+                                <div class="health-bar-mini"><div class="health-bar-fill" id="healthMemBar"></div></div>
+                            </div>
+                            <div class="health-row">
+                                <span class="health-label">💿 Disk:</span>
+                                <span class="health-value" id="healthDisk">0%</span>
+                                <div class="health-bar-mini"><div class="health-bar-fill" id="healthDiskBar"></div></div>
+                            </div>
+                            <div class="health-row">
+                                <span class="health-label">🌡️ Temp:</span>
+                                <span class="health-value" id="healthTemp">--°C</span>
+                                <span class="health-status" id="healthTempStatus">OK</span>
+                            </div>
+                            <div class="health-row">
+                                <span class="health-label">⏱️ Uptime:</span>
+                                <span class="health-value" id="healthUptime">0.0h</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- NEW: Network/Communication Status -->
+                    <div class="widget-card">
+                        <h3>📡 Communication</h3>
+                        <div class="comm-status">
+                            <div class="comm-item">
+                                <div class="comm-icon" id="pixhawkStatus">📡</div>
+                                <div class="comm-info">
+                                    <div class="comm-name">Pixhawk</div>
+                                    <div class="comm-rate" id="pixhawkRate">-- Hz</div>
+                                </div>
+                            </div>
+                            <div class="comm-item">
+                                <div class="comm-icon" id="cameraStatus">📹</div>
+                                <div class="comm-info">
+                                    <div class="comm-name">Camera</div>
+                                    <div class="comm-rate" id="cameraFPS">-- FPS</div>
+                                </div>
+                            </div>
+                            <div class="comm-item">
+                                <div class="comm-icon">🌐</div>
+                                <div class="comm-info">
+                                    <div class="comm-name">Network</div>
+                                    <div class="comm-rate" id="networkRate">↓ -- ↑ --</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Center Column: 3D Visualization (FULL SCREEN) -->
+                <div class="center-column">
+                    <div class="widget-card" style="height: 65%; padding: 10px;">
+                        <h3>🎯 3D Position & Attitude</h3>
+                        <div id="threejs-container" style="height: calc(100% - 35px);"></div>
+                    </div>
+
+                    <div class="widget-card" style="height: 33%; padding: 10px;">
+                        <h3>🛫 Artificial Horizon (PFD)</h3>
+                        <div style="display: flex; justify-content: center; align-items: center; height: calc(100% - 35px);">
+                            <canvas id="horizonCanvas" width="450" height="280"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Camera Views -->
+                <div class="right-column">
+                    <div class="widget-card">
+                        <h3>🎯 Reference Frame</h3>
+                        <div class="camera-container">
+                            <img id="referenceFrame" src="" alt="">
+                            <div class="frame-overlay" id="refOverlay" style="display: flex;">
+                                <div class="overlay-content">
+                                    <div class="spinner"></div>
+                                    <p>Press CAPTURE to set reference</p>
+                                </div>
+                            </div>
+                            <div class="camera-info">
+                                <span class="info-badge" id="refFeatures">📍 0 features</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget-card">
+                        <h3>📹 Live Frame</h3>
+                        <div class="camera-container">
+                            <img id="currentFrame" src="" alt="">
+                            <div class="frame-overlay" id="liveOverlay" style="display: flex;">
+                                <div class="overlay-content">
+                                    <div class="spinner"></div>
+                                    <p>Connecting to camera...</p>
+                                </div>
+                            </div>
+                            <div class="camera-info">
+                                <span class="info-badge" id="currFeatures">🎯 0 matches</span>
+                                <span class="info-badge" id="yoloDetections">🔍 0 objects</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vision Tab -->
+        <div class="tab-content" id="vision">
+            <div class="vision-layout">
+                <div class="large-camera-view">
+                    <h3>Feature Matching & Object Detection</h3>
+                    <img id="visionFrame" src="" alt="Vision analysis view">
+                </div>
+                <div class="vision-stats">
+                    <div class="stat-card">
+                        <h4>Feature Matching</h4>
+                        <canvas id="matchHistoryChart" width="400" height="200"></canvas>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Detection Stats</h4>
+                        <div id="detectionList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- IMU Tab - Enhanced with detailed data -->
+        <div class="tab-content" id="sensors">
+            <div class="imu-enhanced-layout">
+                <div class="imu-section">
+                    <h3>📡 Raw IMU Data</h3>
+                    <div class="imu-data-grid">
+                        <div class="data-item">
+                            <span class="label">Roll</span>
+                            <span class="value" id="imuRoll">0.00°</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="label">Pitch</span>
+                            <span class="value" id="imuPitch">0.00°</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="label">Yaw</span>
+                            <span class="value" id="imuYaw">0.00°</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="label">Roll Rate</span>
+                            <span class="value" id="imuRollRate">0.00 rad/s</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="label">Pitch Rate</span>
+                            <span class="value" id="imuPitchRate">0.00 rad/s</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="label">Yaw Rate</span>
+                            <span class="value" id="imuYawRate">0.00 rad/s</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="imu-section">
+                    <h3>🎯 EKF Filtered Position</h3>
+                    <div class="imu-data-grid">
+                        <div class="data-item">
+                            <span class="label">Position X</span>
+                            <span class="value" id="ekfPosX">0.00 m</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="label">Position Y</span>
+                            <span class="value" id="ekfPosY">0.00 m</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="label">Position Z</span>
+                            <span class="value" id="ekfPosZ">0.00 m</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="label">Velocity X</span>
+                            <span class="value" id="ekfVelX">0.00 m/s</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="label">Velocity Y</span>
+                            <span class="value" id="ekfVelY">0.00 m/s</span>
+                        </div>
+                        <div class="data-item">
+                            <span class="label">Velocity Z</span>
+                            <span class="value" id="ekfVelZ">0.00 m/s</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="imu-section">
+                    <h3>🔀 Sensor Fusion Status</h3>
+                    <div class="fusion-indicators">
+                        <div class="fusion-item">
+                            <div class="fusion-icon">🧭</div>
+                            <div class="fusion-info">
+                                <div class="fusion-name">IMU Health</div>
+                                <div class="fusion-status" id="fusionIMU">Active</div>
+                            </div>
+                        </div>
+                        <div class="fusion-item">
+                            <div class="fusion-icon">📊</div>
+                            <div class="fusion-info">
+                                <div class="fusion-name">EKF Status</div>
+                                <div class="fusion-status" id="fusionEKF">Healthy</div>
+                            </div>
+                        </div>
+                        <div class="fusion-item">
+                            <div class="fusion-icon">👁️</div>
+                            <div class="fusion-info">
+                                <div class="fusion-name">Vision</div>
+                                <div class="fusion-status" id="fusionVision">Tracking</div>
+                            </div>
+                        </div>
+                        <div class="fusion-item">
+                            <div class="fusion-icon">⚡</div>
+                            <div class="fusion-info">
+                                <div class="fusion-name">Update Rate</div>
+                                <div class="fusion-status" id="fusionRate">0 Hz</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Tab -->
+        <div class="tab-content" id="performance">
+            <div class="performance-layout">
+                <div class="chart-container">
+                    <canvas id="fpsChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="confidenceChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="matchesChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="velocityChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/visualizations.js') }}"></script>
+</body>
+</html>
+

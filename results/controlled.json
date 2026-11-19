@@ -1,0 +1,55 @@
+{
+  "input": "Seeded 480x360 texture; exact 2-D translations; no physical camera model",
+  "seed": 42,
+  "cases": [
+    {
+      "known_image_translation_x_px": 0,
+      "known_image_scale": 1.0,
+      "homography_valid": true,
+      "homography_tx_px": 1.4364104924697017e-14,
+      "homography_scale": 0.9999999999999999,
+      "flow_valid": true,
+      "flow_dx_px": -0.0,
+      "archived_flow_scale": 1.0,
+      "flow_score_pct": 100.0
+    },
+    {
+      "known_image_translation_x_px": 5,
+      "known_image_scale": 1.0,
+      "homography_valid": true,
+      "homography_tx_px": -4.99999999999995,
+      "homography_scale": 0.9999999999999996,
+      "flow_valid": true,
+      "flow_dx_px": -5.0,
+      "archived_flow_scale": 1.059999942779541,
+      "flow_score_pct": 99.69497680664062
+    },
+    {
+      "known_image_translation_x_px": 10,
+      "known_image_scale": 1.0,
+      "homography_valid": true,
+      "homography_tx_px": -9.999999999999954,
+      "homography_scale": 0.9999999999999996,
+      "flow_valid": true,
+      "flow_dx_px": -10.000009536743164,
+      "archived_flow_scale": 1.160000205039978,
+      "flow_score_pct": 99.36532592773438
+    },
+    {
+      "known_image_translation_x_px": 20,
+      "known_image_scale": 1.0,
+      "homography_valid": true,
+      "homography_tx_px": -19.999999999999943,
+      "homography_scale": 0.9999999999999996,
+      "flow_valid": true,
+      "flow_dx_px": -20.0,
+      "archived_flow_scale": 1.3600000143051147,
+      "flow_score_pct": 95.7626724243164
+    }
+  ],
+  "textureless_input": {
+    "valid": false,
+    "score_pct": 0.0
+  },
+  "interpretation": "Lateral image translation alone raises the archived flow scale. That number is not an independent depth measurement."
+}
