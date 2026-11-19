@@ -1,0 +1,35 @@
+.gitignore
+  s_4af8d6f83b24e8::t_9c8570fca51f1b 1-6
+dhrubotara/replay.py
+  s_4af8d6f83b24e8::t_fd531bc6a9b4bb 1-153
+origin/visual_nav_sys/web_dashboard/static/css/dashboard.css
+  s_4af8d6f83b24e8::t_3ee34635ee10ce 1-957
+origin/visual_nav_sys/web_dashboard/static/js/dashboard.js
+  s_4af8d6f83b24e8::t_bff5aa6fe53b94 1-481
+origin/visual_nav_sys/web_dashboard/static/js/visualizations.js
+  s_4af8d6f83b24e8::t_c5f854c740fabe 1-650
+origin/visual_nav_sys/web_dashboard/templates/dashboard.html
+  s_4af8d6f83b24e8::t_58b06369901dee 1-373
+results/pool-every-5/frames.csv
+  s_4af8d6f83b24e8::t_7f272bfabd93d1 1-180
+results/pool-every-5/summary.json
+  s_4af8d6f83b24e8::t_49b7be2ce821cf 1-22
+tests/test_guidance.py
+  s_4af8d6f83b24e8::t_7f931f58307dd2 1-66
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "3d3617f44ba8606a4425dd00e52b99f762fa7d2c",
+  "prompts": {},
+  "sessions": {
+    "s_4af8d6f83b24e8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e04fd519-589d-4e28-bd6f-1517d1827ef2",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Fahim Faisal <fahim.2002.faisal@gmail.com>"
+    }
+  }
+}
